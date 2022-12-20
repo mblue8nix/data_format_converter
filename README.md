@@ -5,7 +5,7 @@ any like a mini CV, or anything for fun. It reads a text file, converting and wr
 different formats dynamicly creating a schema for diferent data stores...
 
 
-## - text_to_schema_converter.py
+## text_to_schema_converter.py
 
 ### Example:
 
