@@ -7,7 +7,7 @@ different formats dynamicly creating a schema for diferent data stores...
 
 ###Example:
 
-A simple text exmaple:
+A simple text example:
 
 ```
 Product Super Thingy Test
