@@ -1,13 +1,15 @@
-#Data Format Converter
+# Data Format Converter
 
 A Personal Exercise for myself to take a text file with key points and a description of 
 any like a mini CV, or anything for fun. It reads a text file, converting and writing in
 different formats dynamicly creating a schema for diferent data stores...
 
 
-###Example:
+## - text_to_schema_converter.py
 
-A simple text example:
+### Example:
+
+A sample text example:
 
 ```
 Product Super Thingy Test
@@ -16,7 +18,7 @@ Connectors MySQL, MongoDB, Redis, BigQuery, Snowflake
 Programs Python, Bash, SQL
 DataPlatforms GCP, Hortonworks(Now Cloudera)
 ```
-
+#### Usage:
 ```shell
 sh-3.2$ python3 text_to_schema_converter.py --upload test_data.txt 
 ```
