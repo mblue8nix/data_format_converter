@@ -1,0 +1,5 @@
+Product Super Thingy Test
+Cost $123,129.99
+Connectors MySQL, MongoDB, Redis, BigQuery, Snowflake
+Programs Python, Bash, SQL
+DataPlatforms GCP, Hortonworks(Now Cloudera)
