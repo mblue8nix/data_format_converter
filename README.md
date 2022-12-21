@@ -25,7 +25,6 @@ sh-3.2$ python3 text_to_schema_converter.py --upload test_data.txt
 
 Converting test_data from Text to JSON File: test_data.json 
 ```json
- [
   {
     "Product": "Super Thingy Test",
     "Cost": "$123,129.99",
@@ -33,7 +32,6 @@ Converting test_data from Text to JSON File: test_data.json
     "Programs": "Python, Bash, SQL",
     "DataPlatforms": "GCP, Hortonworks(Now Cloudera)"
   }
-] 
 ```
 
 Convert JSON to Parquet:
@@ -55,11 +53,12 @@ Created File: test_data.sql
 
 ```SQL
 CREATE TABLE IF NOT EXISTS `test_data` (
-   `Id` MEDIUMINT NOT NULL AUTO_INCREMENT,Product varchar(100) DEFAULT NULL,
-   Cost varchar(100) DEFAULT NULL,
-   Connectors varchar(100) DEFAULT NULL,
-   Programs varchar(100) DEFAULT NULL,
-   DataPlatforms   PRIMARY KEY (id)
+   `Id` MEDIUMINT NOT NULL AUTO_INCREMENT,Product varchar(250) DEFAULT NULL,
+   Cost varchar(250) DEFAULT NULL,
+   Connectors varchar(250) DEFAULT NULL,
+   Programs varchar(250) DEFAULT NULL,
+   DataPlatforms varchar(250) DEFAULT NULL,   
+   PRIMARY KEY (id)
 );
 
 
