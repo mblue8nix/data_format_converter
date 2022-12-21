@@ -76,7 +76,7 @@ INSERT INTO test_data
 ```
 
  ## mongodb_connect_example.py
-This script was created as an example to connect to mongodb and load json to mongodb. 
+This script was created as an example to connect to mongodb and load json to mongodb via python. 
 
 #### Usage:
 ```shell
