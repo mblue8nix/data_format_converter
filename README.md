@@ -82,3 +82,6 @@ This script was created as an example to connect to mongodb and load json to mon
 ```shell
  python3 mongodb_connect_example.py  -u test_data_load.json  --host localhost:27017
 ```
+```json
+{ "Product" : "Super Thingy Test", "Cost" : "$123,129.99", "Connectors" : "MySQL, MongoDB, Redis, BigQuery, Snowflake", "Programs" : "Python, Bash, SQL", "DataPlatforms" : "GCP, Hortonworks(Now Cloudera)" }
+```
