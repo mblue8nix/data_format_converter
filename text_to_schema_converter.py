@@ -12,6 +12,7 @@ import sys
 import pandas as pd
 
 
+
 # Passing in the file
 parser = argparse.ArgumentParser()
 
@@ -32,6 +33,7 @@ else:
         FILE_NAME = ' '.join(args.file_name)
         PNAME = FILE_NAME.replace('.txt', '')
         J_FILEN = PNAME + ('.json')
+        J2_FILEN = PNAME + ('_load.json')  # To loadable. 
         P_FILEN = PNAME + ('.parquet')
         SQL_FILEN = PNAME + ('.sql')
 
@@ -45,7 +47,11 @@ with open(FILE_NAME, encoding="utf-8") as jd:
         mini_data[command] = description.strip()
 
 out_file = open(J_FILEN, "w", encoding="utf-8")
-json.dump(mini_data, out_file, indent=4, sort_keys=False)
+json.dump(mini_data, out_file, sort_keys=False)
+out_file.close()
+
+out_file = open(J2_FILEN, "w", encoding="utf-8")
+json.dump(mini_data, out_file, sort_keys=False)
 out_file.close()
 
 
@@ -55,6 +61,8 @@ out_file.close()
 with open(J_FILEN, 'r', encoding="utf-8") as json_file:
     mini_cv = json.load(json_file)
     jfile = json.dumps(mini_cv, indent=2)
+
+print(f"\nConverting {PNAME} from Text to JSON File: {J_FILEN} \n\n", jfile, "\n")
 
 with open(J_FILEN, 'w', encoding="utf-8") as new_json:
     new_json.write("[\n")
@@ -67,7 +75,6 @@ with open(J_FILEN, 'r', encoding="utf-8") as json_file:
     mini_cv = json.load(json_file)
     jfile = json.dumps(mini_cv, indent=2)
 
-print(f"\nConverting {PNAME} from Text to JSON File: {J_FILEN} \n\n", jfile, "\n")
 
 
 # Pandas
@@ -89,7 +96,7 @@ def print_full(dis_set):
 # Converting File to parq
 
 
-print("Convert JSON to Parquet:\nCreated File: mini_cv.parquet ...")
+print("Convert JSON to Parquet:\nCreated File: '",P_FILEN,"' ...")
 
 convert_data = pd.read_json(J_FILEN)
 convert_data.to_parquet(P_FILEN)
@@ -120,7 +127,7 @@ for json in jsondata:
     for key, value in json.items():
         if not FIRST_PAIR:
             KEY_LIST += ", \n    "
-            KEY_LIST2 += " varchar(100) DEFAULT NULL,\n   "
+            KEY_LIST2 += " varchar(250) DEFAULT NULL,\n   "
             VALUE_LIST += ", \n    "
         FIRST_PAIR = False
         KEY_LIST += key
@@ -136,13 +143,13 @@ for json in jsondata:
 " + KEY_LIST + "\n VALUES " + VALUE_LIST + "\n"
 
     SQL_SCHEMA += "CREATE TABLE IF NOT EXISTS " + "`" + TABLE_NAME + "` (\n" +\
-"   `Id` MEDIUMINT NOT NULL AUTO_INCREMENT," + KEY_LIST2 + "   \
-PRIMARY KEY (id)\n" + ");\n"
+"   `Id` MEDIUMINT NOT NULL AUTO_INCREMENT," + KEY_LIST2 + " \
+varchar(250) DEFAULT NULL,   \n   PRIMARY KEY (id)\n" + ");\n"
 
 with open(SQL_FILEN, 'w', encoding="utf-8") as sql_file:
     sql_file.write(SQL_SCHEMA)
     sql_file.write(SQL_STATEMENT)
 
-print("\nConvert Json to SQL:\n Created File:", SQL_FILEN,"\n")
+print("\nConvert Json to SQL:\nCreated File:", SQL_FILEN,"\n")
 print(SQL_SCHEMA)
 print(SQL_STATEMENT)
