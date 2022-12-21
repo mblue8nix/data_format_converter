@@ -74,3 +74,11 @@ INSERT INTO test_data
     'Python, Bash, SQL', 
     'GCP, Hortonworks(Now Cloudera)');
 ```
+
+ ## mongodb_connect_example.py
+This script was created as an example to connect to mongodb and load json to mongodb. 
+
+#### Usage:
+```shell
+ python3 mongodb_connect_example.py  -u test_data_load.json  --host localhost:27017
+```
